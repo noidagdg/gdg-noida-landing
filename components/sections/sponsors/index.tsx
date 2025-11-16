@@ -50,14 +50,14 @@ const sponsors: Sponsor[] = [
     {
       id: 3,
       name: "Brevo",
-      logo: "/assets/sponsors/brevo.svg",
+      logo: "/assets/sponsors/brrr.svg",
       bgColor: "bg-green-50",
       testimonial: {
         text: "Our partnership with GDG Noida has been a highlight of the past year for Brevo. Sponsoring DevFest Noida 2024 gave us a firsthand look at the team’s remarkable ability to connect with developers. Their dedication to fostering a vibrant and engaged tech community is truly inspiring, and it’s a mission we're proud to support. The high-quality events and seamless execution have not only enhanced our visibility but have also created meaningful connections. We are grateful for this reliable and committed partnership and look forward to continuing to build on this success in the future.",
         author: "Harshit Punwar",
         position: "Developer Ecosystem Manager",
         rating: 5,
-        photo: "/assets/sponsors/harshit-brevo.svg"
+        photo: "/assets/sponsors/harshit-brrr.svg"
       }
     },
     {
