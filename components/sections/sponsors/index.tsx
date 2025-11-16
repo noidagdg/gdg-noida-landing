@@ -78,19 +78,30 @@ const sponsors: Sponsor[] = [
 function Sponsors() {
   const [activeSponsor, setActiveSponsor] = useState<Sponsor>(sponsors[0])
   const sponsorRefs = useRef<{ [key: number]: HTMLDivElement | null }>({})
+  const containerRef = useRef<HTMLDivElement | null>(null)
 
   const handleSponsorClick = (sponsor: Sponsor) => {
     setActiveSponsor(sponsor)
   }
 
-  // Scroll active sponsor to center
+  // Scroll active sponsor to center within container with top offset
   useEffect(() => {
     const activeElement = sponsorRefs.current[activeSponsor.id]
-    if (activeElement) {
-      activeElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-        inline: 'nearest'
+    const container = containerRef.current
+    
+    if (activeElement && container) {
+      // Add offset for spacing at the top (80px for desktop, 20px for mobile horizontal scroll)
+      const topOffset = window.innerWidth >= 1024 ? 80 : 0
+      const leftOffset = window.innerWidth < 1024 ? 20 : 0
+      
+      // Calculate scroll positions to center the element within the container with offset
+      const scrollLeft = activeElement.offsetLeft - (container.offsetWidth / 2) + (activeElement.offsetWidth / 2) - leftOffset
+      const scrollTop = activeElement.offsetTop - (container.offsetHeight / 2) + (activeElement.offsetHeight / 2) - topOffset
+      
+      container.scrollTo({
+        left: scrollLeft,
+        top: scrollTop,
+        behavior: 'smooth'
       })
     }
   }, [activeSponsor])
@@ -103,45 +114,50 @@ function Sponsors() {
         const nextIndex = (currentIndex + 1) % sponsors.length
         return sponsors[nextIndex]
       })
-    }, 50000) // 10 seconds
+    }, 4000) // 10 seconds
 
     return () => clearInterval(interval)
   }, [])
 
   return (
-    <section className={`relative pt-[32px] pb-[50px] px-[64px] ${activeSponsor.bgColor}`}>
+    <section className={`relative pt-8 pb-12 px-4 md:pt-[32px] md:pb-[50px] md:px-[64px] ${activeSponsor.bgColor}`}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-8 md:mb-10">
         <BlurFade delay={0.1} inView>
-          <h2 className="text-4xl text-zinc-900 md:text-5xl lg:text-6xl">
+          <h2 className="text-3xl text-zinc-900 md:text-4xl lg:text-5xl xl:text-6xl">
               Star <span className="font-bold">Sponsors</span>
           </h2>
         </BlurFade>
           <BlurFade delay={0.2} inView>
-            <p className="mt-4 text-base text-zinc-600 md:text-lg">
+            <p className="mt-3 text-sm text-zinc-600 md:mt-4 md:text-base lg:text-lg">
               Empowering our vision with their support
             </p>
           </BlurFade>
         </div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-start">
-          {/* Left side - Sponsor Logos (Scrollable) */}
-          <div className="flex flex-col gap-6 max-h-[563px] overflow-y-scroll no-scrollbar bg-white p-4 rounded-[20px] scrollbar-hide"
-          ref={(el) => {
-            sponsorRefs.current[activeSponsor.id] = el
-          }}
+        <div className="flex flex-col lg:grid lg:grid-cols-3 gap-4 items-start">
+          {/* Left side - Sponsor Logos (Horizontal scroll on mobile, vertical scroll on desktop) */}
+          <div 
+            ref={containerRef}
+            className="w-full bg-white p-3 md:p-4 rounded-[20px]
+                       flex gap-4 overflow-x-auto no-scrollbar
+                       lg:flex-col lg:gap-6 lg:max-h-[563px] lg:overflow-y-scroll lg:overflow-x-hidden lg:scrollbar-hide"
           >
             {sponsors.map((sponsor) => (
               <motion.div
                 key={sponsor.id}
+                ref={(el) => {
+                  sponsorRefs.current[sponsor.id] = el
+                }}
                 onClick={() => handleSponsorClick(sponsor)}
-                className={`rounded-[18px] p-8 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center min-h-[150px] cursor-pointer relative overflow-hidden ${
-                  activeSponsor.id === sponsor.id
-                    ? `min-h-[280px] ${sponsor.bgColor}`
-                    : ' h-[114px]'
-                }`}
+                className={`rounded-[18px] p-3 md:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center cursor-pointer relative overflow-hidden shrink-0
+                  ${activeSponsor.id === sponsor.id
+                    ? `${sponsor.bgColor} lg:min-h-[280px]`
+                    : 'lg:h-[114px]'
+                  }
+                  w-[100px] h-[80px] md:w-[120px] md:h-[100px] lg:w-auto lg:h-auto`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, x: -20 }}
@@ -163,7 +179,7 @@ function Sponsors() {
                     alt={sponsor.name}
                     width={180}
                     height={80}
-                    className={`object-contain transition-all duration-500 ${
+                    className={`object-contain transition-all duration-500 w-full h-auto max-w-[60px] md:max-w-[100px] lg:max-w-[180px] ${
                       activeSponsor.id === sponsor.id
                         ? 'grayscale-0 opacity-100'
                         : 'grayscale opacity-60 hover:opacity-80'
@@ -181,7 +197,7 @@ function Sponsors() {
           </div>
 
           {/* Right side - Testimonial Card with Animation */}
-          <div className="lg:col-span-2"
+          <div className="w-full lg:col-span-2 mt-4 lg:mt-0"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -190,59 +206,51 @@ function Sponsors() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -20, scale: 0.95 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="bg-white rounded-[20px] p-10 shadow-2xl w-[809.983px] h-[563px] "
+                className="bg-white rounded-[20px] p-6 md:p-8 lg:p-10 shadow-2xl w-full h-[500px] md:h-[550px] lg:w-[809.983px] lg:h-[563px] flex flex-col"
               >
                 {/* Testimonial Text */}
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2, duration: 0.3 }}
-                  className="text-gray-800 text-lg leading-relaxed mb-8"
-                  style={{
-                    display: 'flex',
-                    width: '692px',
-                    height: '323px',
-                    // flexDirection: 'column',
-                    // justifyContent: 'center',
-                    flexShrink: 0,
-                  }}
+                  className="text-gray-800 text-sm md:text-base lg:text-lg leading-relaxed grow"
                 >
                   {activeSponsor.testimonial.text}
                 </motion.p>
 
-                {/* Author Info */}
+                {/* Author Info - Fixed at bottom */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3, duration: 0.3 }}
-                  className="border-t border-gray-200 pt-6"
+                  className="border-t border-gray-200 pt-4 md:pt-6 mt-auto"
                 >
                   {/* Photo and Author Info */}
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3 md:gap-4">
                     <Image 
                       src={activeSponsor.testimonial.photo} 
                       alt={activeSponsor.testimonial.author} 
                       width={92} 
                       height={92} 
-                      className="rounded-full object-cover"
+                      className="rounded-full object-cover w-16 h-16 md:w-20 md:h-20 lg:w-[92px] lg:h-[92px]"
                     />
                     <div>
-                      <h3 className="text-2xl font-semibold text-black mb-1">
+                      <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-black mb-1">
                         {activeSponsor.testimonial.author}
                       </h3>
-                      <p className="text-gray-500 text-lg">
+                      <p className="text-gray-500 text-sm md:text-base lg:text-lg">
                         {activeSponsor.testimonial.position}
                       </p>
                     </div>
                   </div>
 
                   {/* Dotted line and Star Rating at bottom */}
-                  <div className="flex items-center justify-center gap-4 min-w-full mt-1">
+                  <div className="flex items-center justify-end gap-3 md:gap-4 w-full mt-4 md:mt-6">
                     {/* Dotted separator line */}
-                    <Image src="/dots.svg" alt="dots" width={271} height={2} className="w-full" />
+                    <div className="flex-1 border-t-2 border-dotted border-gray-300" />
                     
                     {/* Star Rating */}
-                    <div className="flex gap-1">
+                    <div className="flex gap-0.5 md:gap-1 shrink-0">
                       {[...Array(activeSponsor.testimonial.rating)].map((_, index) => (
                         <motion.div
                           key={index}
@@ -250,7 +258,7 @@ function Sponsors() {
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: 0.4 + index * 0.05, duration: 0.2 }}
                         >
-                          <Star className="w-6 h-6 fill-yellow-400 text-yellow-400" />
+                          <Star className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 fill-yellow-400 text-yellow-400" />
                         </motion.div>
                       ))}
                     </div>
