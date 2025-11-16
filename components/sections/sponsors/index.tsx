@@ -57,7 +57,7 @@ const sponsors: Sponsor[] = [
         author: "Harshit Punwar",
         position: "Developer Ecosystem Manager",
         rating: 5,
-        photo: "/assets/sponsors/harshit-brrr.svg"
+        photo: "/assets/sponsors/harshit-brevo.svg"
       }
     },
     {
