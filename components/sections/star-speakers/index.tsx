@@ -25,8 +25,8 @@ const speakers = [
   },
   {
     id: 3,
-    name: "Siddhika Aggarwal",
-    position: "Co-Founder, Mahila Money",
+    name: "Rohit Mishra",
+    position: "Co-Founder, Mastry",
     image: "/assets/speakers/speaker3.webp",
     backgroundColor: "#FAD2CF",
   },
@@ -58,11 +58,11 @@ export default function StarSpeakers({ className }: StarSpeakersProps) {
         </div>
 
         {/* Speaker Cards Grid */}
-        <div className="flex flex-col items-center justify-center gap-6 sm:grid sm:grid-cols-2 sm:gap-6 lg:flex lg:flex-row lg:gap-8">
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid lg:grid-cols-4 lg:gap-8 lg:justify-center">
           {speakers.map((speaker, idx) => (
             <BlurFade key={speaker.id} delay={0.3 + idx * 0.1} inView>
               <div
-                className="group relative h-[314px] w-[260px] overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                className="group relative h-[230px] sm:h-[314px] w-full lg:w-[260px] overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
                 style={{ backgroundColor: speaker.backgroundColor }}
               >
                 {/* Speaker Image - Centered */}
@@ -86,11 +86,11 @@ export default function StarSpeakers({ className }: StarSpeakersProps) {
                 />
 
                 {/* Text Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 text-center">
-                  <h3 className="text-2xl font-bold text-black">
+                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 text-center">
+                  <h3 className="text-md md:text-xl lg:text-2xl font-bold text-black">
                     {speaker.name}
                   </h3>
-                  <p className="mt-1 text-sm text-black">
+                  <p className="mt-1 text-xs md:text-sm lg:text-base text-black">
                     {speaker.position}
                   </p>
                 </div>

@@ -22,7 +22,7 @@ export default function Navbar({ className }: { className?: string }) {
     <div
       className={cn("fixed top-4 md:top-10 inset-x-0 max-w-7xl mx-auto z-50 px-4 md:px-8 lg:px-20", className)}
     >
-      <nav className="relative rounded-full border border-black/10 backdrop-blur-sm dark:bg-black dark:border-white/20 bg-white/90 shadow-lg flex items-center justify-between px-4 md:px-8 py-4 md:py-6">
+      <nav className="relative rounded-full border border-black/10 backdrop-blur-sm dark:bg-black dark:border-white/20 bg-white/90 shadow-lg flex items-center justify-between px-4 md:px-8 py-2 md:py-6">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-3 z-50">
           <Image 
