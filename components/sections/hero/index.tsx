@@ -20,67 +20,83 @@ function Hero() {
       </div>
 
       {/* Decorative Rectangle Elements - Bottom of Section */}
-      <div className="hidden md:flex absolute bottom-0 left-0 right-0 w-full z-[10] overflow-hidden pointer-events-none flex items-end justify-center gap-4 md:gap-8 px-4">
+      <div className="hidden md:flex absolute bottom-0 left-0 right-0 w-full z-10 overflow-hidden pointer-events-none items-end justify-center gap-4 md:gap-8 px-4">
       <Image 
           src="/assets/Rectangle 41272.svg" 
           alt="" 
-          width={450}
-          height={450}
-          className=" object-contain w-auto "
+          width={200}
+          height={200}
+          loading="lazy"
+          fetchPriority="low"
+          className="object-contain w-auto h-auto"
         />
         
         <Image 
           src="/assets/Rectangle 41269.svg" 
           alt="" 
-          width={400}
-          height={400}
-          className="  object-contain w-auto "
+          width={180}
+          height={180}
+          loading="lazy"
+          fetchPriority="low"
+          className="object-contain w-auto h-auto"
         />
         <Image 
           src="/assets/Rectangle 41270.svg" 
           alt="" 
-          width={500}
-          height={500}
-          className="  object-contain w-auto "
+          width={220}
+          height={220}
+          loading="lazy"
+          fetchPriority="low"
+          className="object-contain w-auto h-auto"
         />
         <Image 
           src="/assets/Rectangle 41271.svg" 
           alt="" 
-          width={600}
-          height={600}
-          className="  object-contain w-auto "
+          width={250}
+          height={250}
+          loading="lazy"
+          fetchPriority="low"
+          className="object-contain w-auto h-auto"
         />
          
       </div>
-      <div className="flex md:hidden absolute bottom-0 left-0 right-0 w-full z-[10] overflow-hidden pointer-events-none  items-end justify-center gap-2 md:gap-8 px-4 ">
+      <div className="flex md:hidden absolute bottom-0 left-0 right-0 w-full z-10 overflow-hidden pointer-events-none  items-end justify-center gap-2 md:gap-8 px-4 ">
       <Image 
           src="/assets/mobile/Rectangle 41272.svg" 
           alt="" 
-          width={450}
-          height={450}
-          className=" object-contain w-auto "
+          width={120}
+          height={120}
+          loading="lazy"
+          fetchPriority="low"
+          className="object-contain w-auto h-auto"
         />
         
         <Image 
           src="/assets/mobile/Rectangle 41269.svg" 
           alt="" 
-          width={400}
-          height={400}
-          className="w-auto mb-10"
+          width={100}
+          height={100}
+          loading="lazy"
+          fetchPriority="low"
+          className="w-auto h-auto mb-10"
         />
         <Image 
           src="/assets/mobile/Rectangle 41270.svg" 
           alt="" 
-          width={500}
-          height={500}
-          className="  w-auto mb-4"
+          width={130}
+          height={130}
+          loading="lazy"
+          fetchPriority="low"
+          className="w-auto h-auto mb-4"
         />
         <Image 
           src="/assets/mobile/Rectangle 41271.svg" 
           alt="" 
-          width={600}
-          height={600}
-          className="  object-contain w-auto "
+          width={150}
+          height={150}
+          loading="lazy"
+          fetchPriority="low"
+          className="object-contain w-auto h-auto"
         />
          
       </div>
