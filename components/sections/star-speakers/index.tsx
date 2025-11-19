@@ -46,7 +46,7 @@ export default function StarSpeakers({ className }: StarSpeakersProps) {
         {/* Section Header */}
         <div className="mb-12 text-center md:mb-16">
           <BlurFade delay={0.1} inView>
-            <h2 className="text-4xl text-zinc-900 md:text-5xl lg:text-6xl">
+            <h2 className="text-3xl text-zinc-900 md:text-5xl lg:text-6xl">
               Our Star <span className="font-bold">Speakers</span>
             </h2>
           </BlurFade>
