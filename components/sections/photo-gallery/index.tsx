@@ -6,7 +6,7 @@ import BlurFade from "@/components/magicui/blur-fade";
 import Image from "next/image";
 
 interface PhotoGalleryProps {
-  className?: string;
+  readonly className?: string;
 }
 
 // Sample image data - replace with actual images
@@ -50,8 +50,82 @@ const maxOffset = Math.max(...centerCards.map(card => card.offset)); // 113px
 
 export default function PhotoGallery({ className }: PhotoGalleryProps) {
   return (
-    <section className={cn("relative w-full overflow-hidden bg-linear-to-b from-gray-50 to-white", className)}>
+    <section className={cn("relative w-full overflow-hidden bg-linear-to-b from-gray-50 to-white py-12 lg:py-0", className)}>
       <div className="relative mx-auto max-w-[1920px]">
+        {/* Mobile View - Only 3 columns */}
+        <div className="lg:hidden px-2 sm:px-4">
+          {/* Title Section - Mobile */}
+            <div className="mb-6 sm:mb-8 text-center">
+              <BlurFade delay={0.2} inView>
+                <h2 className="text-3xl font-semibold sm:text-4xl md:text-5xl text-zinc-900">
+                  Photo Gallery
+                </h2>
+              </BlurFade>
+            <BlurFade delay={0.3} inView>
+              <p className="mt-3 sm:mt-4 text-base sm:text-lg text-zinc-600">
+                A glimpse into our most memorable moments
+              </p>
+            </BlurFade>
+          </div>
+
+          {/* 3-Column Mobile Grid */}
+          <div className="flex items-center justify-center gap-2 sm:gap-4 md:gap-6 max-w-full">
+            {/* Column 1 - Two Photos */}
+            <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 flex-shrink-0">
+              {columnImages[0].map((img) => (
+                <BlurFade key={`mobile-${img.src}`} delay={0.4} inView>
+                  <div className="group relative h-[120px] w-[85px] sm:h-[150px] sm:w-[105px] md:h-[182px] md:w-[134px] overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      sizes="(max-width: 640px) 85px, (max-width: 768px) 105px, 134px"
+                      className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  </div>
+                </BlurFade>
+              ))}
+            </div>
+
+            {/* Column 3 - Single Photo (Centered Vertically) */}
+            <div className="flex items-center justify-center flex-shrink-0">
+              <BlurFade delay={0.6} inView>
+                <div className="group relative h-[200px] w-[140px] sm:h-[250px] sm:w-[175px] md:h-[300px] md:w-[220px] overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                  <Image
+                    src={centerCards[0].src}
+                    alt={centerCards[0].alt}
+                    fill
+                    sizes="(max-width: 640px) 140px, (max-width: 768px) 175px, 220px"
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                </div>
+              </BlurFade>
+            </div>
+
+            {/* Column 8 - Two Photos */}
+            <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 flex-shrink-0">
+              {columnImages[3].map((img) => (
+                <BlurFade key={`mobile-${img.src}`} delay={0.7} inView>
+                  <div className="group relative h-[120px] w-[85px] sm:h-[150px] sm:w-[105px] md:h-[182px] md:w-[134px] overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      sizes="(max-width: 640px) 85px, (max-width: 768px) 105px, 134px"
+                      className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  </div>
+                </BlurFade>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop View - Full Layout (hidden on mobile) */}
+        <div className="hidden lg:block relative">
         {/* Image Columns Grid */}
         <div className="relative flex items-start justify-center gap-[10px]">
           {/* Left Side - Column 1 & 2 */}
@@ -124,8 +198,8 @@ export default function PhotoGallery({ className }: PhotoGalleryProps) {
             {/* Text Overlay */}
             <div className="relative text-center">
               <BlurFade delay={0.9} inView>
-                <h2 className="whitespace-nowrap text-5xl text-zinc-900 sm:text-6xl md:text-7xl lg:text-8xl">
-                  Photo <span className="font-black">Gallery</span>
+                <h2 className="whitespace-nowrap font-semibold text-5xl text-zinc-900 sm:text-6xl md:text-7xl lg:text-[64px]">
+                  Photo Gallery
                 </h2>
               </BlurFade>
               <BlurFade delay={1.0} inView>
@@ -178,6 +252,8 @@ export default function PhotoGallery({ className }: PhotoGalleryProps) {
           </div>
           </div>
         </div>
+        </div>
+        {/* End Desktop View */}
       </div>
     </section>
   );
