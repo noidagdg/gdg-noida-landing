@@ -26,6 +26,9 @@ export const metadata: Metadata = {
       },
     ],
   },
+  other: {
+    "og:logo": "https://gdgnoida.com/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -39,11 +42,12 @@ export default function RootLayout({
         <meta property="og:type" content="website" />
         <meta property="og:title" content="GDG Noida" />
         <meta property="og:url" content="https://gdgnoida.com" />
-        <meta property="og:image" content="https://freeimage.host/i/fdmbmil" />
+        <meta property="og:image" content="https://iili.io/fdmbmil.png" />
         <meta
           property="og:description"
           content="GDG Noida is a community of developers who are passionate about technology and innovation."
         />
+        <meta property="og:logo" content="https://iili.io/fdmbmil.png" />
       </head>
       <body
         className="antialiased"
