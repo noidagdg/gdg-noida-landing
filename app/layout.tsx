@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://gdgnoida.com/og-image.png",
+        url: "https://freeimage.host/i/fdmbmil",
         width: 1200,
         height: 630,
         alt: "GDG Noida hero preview",
@@ -35,6 +35,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="GDG Noida" />
+        <meta property="og:url" content="https://gdgnoida.com" />
+        <meta property="og:image" content="https://freeimage.host/i/fdmbmil" />
+        <meta
+          property="og:description"
+          content="GDG Noida is a community of developers who are passionate about technology and innovation."
+        />
+      </head>
       <body
         className="antialiased"
         style={{ fontFamily: "'Product Sans', ui-sans-serif, system-ui, sans-serif" }}
