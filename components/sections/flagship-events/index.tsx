@@ -207,16 +207,19 @@ export default function FlagshipEvents () {
   const [currentSet, setCurrentSet] = useState(0);
   const [direction, setDirection] = useState(0);
   const [resetKey, setResetKey] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
-  // Define very light gradient backgrounds for each set
-  const gradientBackgrounds = [
-    // Set 1: DevFest colors - light green, light pink, light blue-grey
-    "linear-gradient(135deg, #f4fbf5 0%, #fef2f6 50%, #f6f8f9 100%)",
-    // Set 2: Community Events - light orange, light blue, light purple
-    "linear-gradient(135deg, #fffaf7 0%, #f8fcfe 50%, #faf8fb 100%)",
-    // Set 3: Tech Talks - light red, light indigo, light teal
-    "linear-gradient(135deg, #fff7f8 0%, #f9fafb 50%, #f7fbfb 100%)",
-  ];
 
   const slideVariants = {
     enter: (direction: number) => ({
@@ -270,21 +273,21 @@ export default function FlagshipEvents () {
 
   return (
     <section 
-      className="py-20 px-4 md:px-8 lg:px-16 overflow-hidden transition-all duration-700"
+      className="py-20 px-4 md:px-8 lg:px-16 transition-all duration-700"
     >
       <div className="max-w-[1400px] mx-auto">
         {/* Title Section - Static */}
         <div className="text-center mb-12">
-          <h2 className="text-5xl md:text-6xl text-black">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl text-black">
             Our <span className="font-bold">Flagship Events</span>
           </h2>
-          <p className="text-xl md:text-2xl text-gray-600 mt-8">
+          <p className="text-base md:text-2xl text-gray-600 mt-3">
             Our signature experiences that define excellence
           </p>
         </div>
 
         {/* Carousel Container */}
-        <div className="relative">
+        <div className="relative lg:overflow-hidden">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={currentSet}
@@ -297,10 +300,12 @@ export default function FlagshipEvents () {
                 duration: 0.4,
                 ease: [0.32, 0.72, 0, 1],
               }}
-              drag="x"
+              drag={isMobile ? false : "x"}
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={1}
               onDragEnd={(e, { offset, velocity }) => {
+                if (isMobile) return; // Disable drag on mobile
+                
                 const swipe = swipePower(offset.x, velocity.x);
 
                 if (swipe < -swipeConfidenceThreshold) {
@@ -311,22 +316,35 @@ export default function FlagshipEvents () {
                   setResetKey((prev) => prev + 1);
                 }
               }}
-              className="cursor-grab active:cursor-grabbing"
+              className="lg:cursor-grab lg:active:cursor-grabbing"
             >
               {/* Event Cards Grid */}
-              <div className="flex flex-col lg:flex-row items-start justify-center gap-8 lg:gap-[120px]">
+              <div className="block lg:flex lg:flex-row lg:items-start lg:justify-center lg:gap-[120px]">
                 {eventSets[currentSet].map((event, index) => {
             // Calculate gap from title section based on design specs
             const marginTopClass = index === 1 ? "lg:mt-[90px]" : "lg:mt-[39px]";
+            
+            // Assign z-index based on position for stacking effect (higher index = higher z-index)
+            let zIndexClass = "z-10";
+            if (index === 1) {
+              zIndexClass = "z-20";
+            } else if (index === 2) {
+              zIndexClass = "z-30";
+            }
             
             return (
               <div
                 key={event.year}
                 className={cn(
                   "rounded-[20px] shadow-xl relative flex flex-col items-center",
-                  "w-full max-w-[372px] h-[493px]",
+                  "w-full max-w-[372px] h-[493px] mx-auto lg:mx-0",
                   event.backgroundColor,
-                  marginTopClass
+                  // Mobile: spacing for stacking effect, Desktop: design specs
+                  index === 0 ? "mt-0" : "mt-[25vh] lg:mt-0",
+                  marginTopClass,
+                  // Z-index only on mobile for stacking
+                  `lg:z-auto ${zIndexClass}`,
+                  "sticky top-[20vh] lg:static" // Sticky in middle of screen on mobile, static on desktop
                 )}
               >
                 {/* Event Logo */}
@@ -381,7 +399,7 @@ export default function FlagshipEvents () {
           </AnimatePresence>
 
           {/* Navigation Dots with Progress Loader */}
-          <div className="flex justify-center gap-3 mt-6">
+          <div className="flex justify-center gap-3 mt-6 lg:mt-16">
             {eventSets.map((set, index) => (
               <button
                 key={`nav-${set[0].venue}-${set[0].year}`}
