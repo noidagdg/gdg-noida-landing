@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://freeimage.host/i/fdmbmil",
+        url: "https://iili.io/fdmbmil.png",
         width: 1200,
         height: 630,
         alt: "GDG Noida hero preview",

@@ -38,6 +38,8 @@ const imagePaths = {
   gdgNoidaLogo: "/assets/who-we-are/gdg-noida-logo.png",
   // 14. Behind the scenes
   behindScenes: "/assets/who-we-are/behind-scenes.png",
+  // 15. Night GDG Noida image
+  nightGdgNoida: "/assets/who-we-are/night-gdg.png",
 };
 
 export default function WhoWeAre({ className }: WhoWeAreProps) {
@@ -64,194 +66,194 @@ export default function WhoWeAre({ className }: WhoWeAreProps) {
         </div>
 
         {/* Main Grid Container - 1400px max width */}
-        <div className="max-w-[1400px] w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 pb-8 md:pb-0">
+        <div className="max-w-[1400px] w-full mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 pb-8 md:pb-0">
           {/* Column 1 - Left */}
-          <div className="flex flex-col gap-4 w-full">
+          <div className="flex flex-col gap-3 md:gap-4 w-full">
             {/* Nested Grid for small cards: 1, 2 */}
-            <div className="grid grid-cols-2 gap-4 w-full">
+            <div className="grid grid-cols-2 gap-3 md:gap-4 w-full">
               {/* 1. Community for ALL */}
               <BlurFade delay={0.2} inView>
-                <div className="bg-[#FEF7E6] rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform cursor-pointer aspect-square relative w-full">
+                <div className="bg-[#FEF7E6] rounded-2xl md:rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform cursor-pointer relative w-full aspect-[1/1.1]">
                   <Image
                     src={imagePaths.communityForAll}
                     alt="Community for ALL"
                     fill
-                    className="object-cover rounded-3xl"
+                    className="object-cover"
                   />
                 </div>
               </BlurFade>
 
               {/* 2. Android Image */}
               <BlurFade delay={0.25} inView>
-                <div className="bg-[#E6F6EB] rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform cursor-pointer aspect-square relative w-full">
+                <div className="bg-[#E6F6EB] rounded-2xl md:rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform cursor-pointer relative w-full aspect-[1/1.1]">
                   <Image
                     src={imagePaths.androidImage}
                     alt="Android Mascot"
                     fill
-                    className="object-cover rounded-3xl"
+                    className="object-cover"
                   />
                 </div>
               </BlurFade>
             </div>
 
-            {/* 7. We are diverse community - 355px × 126px */}
+            {/* 7. We are diverse community */}
             <BlurFade delay={0.3} inView>
-              <div className="bg-white rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform cursor-pointer relative w-full" style={{ aspectRatio: "355/126" }}>
+              <div className="bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform cursor-pointer relative w-full aspect-[2.8/1.1]">
                 <Image
                   src={imagePaths.techDiverse}
                   alt="Tech Diverse Community"
                   fill
-                  className="object-cover rounded-3xl"
+                  className="object-cover"
                 />
               </div>
             </BlurFade>
 
-            {/* 10. Team image - 355px × 157px */}
+            {/* 10. Team image */}
             <BlurFade delay={0.35} inView>
-              <div className="bg-[#1F2937] rounded-3xl overflow-hidden relative group shadow-sm hover:scale-[1.02] transition-transform cursor-pointer w-full" style={{ aspectRatio: "355/157" }}>
+              <div className="bg-[#1F2937] rounded-2xl md:rounded-3xl overflow-hidden relative group shadow-sm hover:scale-[1.02] transition-transform cursor-pointer w-full aspect-[2.3/1.14]">
                 <Image
                   src={imagePaths.teamPhoto}
                   alt="GDG NOIDA Team"
                   fill
-                  className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"
+                  className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
                 />
-                <div className="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent w-full rounded-b-3xl">
-                  <p className="text-white text-sm font-medium tracking-wide">GDG NOIDA Team</p>
+                <div className="absolute bottom-0 left-0 p-3 md:p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent w-full">
+                  <p className="text-white text-xs md:text-sm font-medium tracking-wide">GDG NOIDA Team</p>
                 </div>
               </div>
             </BlurFade>
 
-            {/* 11. Custom gif - 357px × 175px */}
-            <BlurFade delay={0.4} inView>
-              <div className="bg-[#FADADD] rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform cursor-pointer relative w-full" style={{ aspectRatio: "357/175" }}>
+            {/* 11. Custom gif */}
+            {/* <BlurFade delay={0.4} inView>
+              <div className="bg-[#FADADD] rounded-2xl md:rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform cursor-pointer relative w-full aspect-[2.2/1]">
                 <Image
                   src={imagePaths.customGif}
                   alt="Custom animation"
                   fill
-                  className="object-cover rounded-3xl"
+                  className="object-cover"
                 />
               </div>
-            </BlurFade>
+            </BlurFade> */}
           </div>
 
           {/* Column 2 - Middle */}
-          <div className="flex flex-col gap-4 w-full">
+          <div className="flex flex-col gap-3 md:gap-4 w-full">
             {/* Nested Grid: 3, 4 */}
-            <div className="grid grid-cols-2 gap-4 w-full">
-              {/* 3. GDG Noida image - 218.04px × 104.2px */}
+            <div className="grid grid-cols-2 gap-3 md:gap-4 w-full">
+              {/* 3. GDG Noida night image */}
               <BlurFade delay={0.45} inView>
-                <div className="bg-black rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform relative w-full" style={{ aspectRatio: "218.04/104.2" }}>
+                <div className="bg-black rounded-2xl md:rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform relative w-full aspect-[2/1]">
                   <Image
-                    src={imagePaths.gdgNoidaImage}
+                    src={imagePaths.nightGdgNoida}
                     alt="GDG NOIDA"
                     fill
-                    className="object-cover rounded-3xl"
+                    className="object-cover"
                   />
                 </div>
               </BlurFade>
 
-              {/* 4. 3+ Golden Years - 240.8px × 104.2px */}
+              {/* 4. 3+ Golden Years */}
               <BlurFade delay={0.5} inView>
-                <div className="bg-[#E6F6EB] rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform relative w-full" style={{ aspectRatio: "240.8/104.2" }}>
+                <div className="bg-[#E6F6EB] rounded-2xl md:rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform relative w-full aspect-[2/1]">
                   <Image
                     src={imagePaths.goldenYears}
                     alt="3+ Golden Years"
                     fill
-                    className="object-cover rounded-3xl"
+                    className="object-cover"
                   />
                 </div>
               </BlurFade>
             </div>
 
-            {/* 8. Big image in middle of Noida - 468.48px × 436.95px */}
+            {/* 8. Big image in middle of Noida */}
             <BlurFade delay={0.55} inView>
-              <div className="bg-gradient-to-b from-blue-50 to-white rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform relative w-full" style={{ aspectRatio: "468.48/436.95" }}>
+              <div className="bg-gradient-to-b from-blue-50 to-white rounded-2xl md:rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform relative w-full aspect-[1.05/1]">
                 <Image
                   src={imagePaths.noidaGraphic}
                   alt="NOIDA City Graphic"
                   fill
-                  className="object-cover rounded-3xl"
+                  className="object-cover"
                   priority
                 />
               </div>
             </BlurFade>
 
-            {/* 12. Industry leaders - 468.48px × 100.7px */}
+            {/* 12. Industry leaders */}
             <BlurFade delay={0.6} inView>
-              <div className="bg-[#E6F6EB] rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform relative w-full" style={{ aspectRatio: "468.48/100.7" }}>
+              <div className="bg-[#E6F6EB] rounded-2xl md:rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform relative w-full aspect-[4.5/1]">
                 <Image
                   src={imagePaths.industryLeaders}
                   alt="Industry Leaders"
                   fill
-                  className="object-cover rounded-3xl"
+                  className="object-cover"
                 />
               </div>
             </BlurFade>
           </div>
 
           {/* Column 3 - Right */}
-          <div className="flex flex-col gap-4 w-full">
+          <div className="flex flex-col gap-3 md:gap-4 w-full">
             {/* Stats Grid: 5, 6 */}
-            <div className="grid grid-cols-2 gap-4 w-full">
-              {/* 5. 33K+ Community Members - 217.16px × 159.37px */}
+            <div className="grid grid-cols-2 gap-3 md:gap-4 w-full">
+              {/* 5. 33K+ Community Members */}
               <BlurFade delay={0.65} inView>
-                <div className="bg-[#EBEFFF] rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform relative w-full" style={{ aspectRatio: "217.16/159.37" }}>
+                <div className="bg-[#EBEFFF] rounded-2xl md:rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform relative w-full aspect-[1.4/1]">
                   <Image
                     src={imagePaths.communityMembers}
                     alt="33K+ Community Members"
                     fill
-                    className="object-cover rounded-3xl"
+                    className="object-cover"
                   />
                 </div>
               </BlurFade>
 
-              {/* 6. 50+ Successful Events - 208px × 159px */}
+              {/* 6. 50+ Successful Events */}
               <BlurFade delay={0.7} inView>
-                <div className="bg-[#FEF7E6] rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform relative w-full" style={{ aspectRatio: "208/159" }}>
+                <div className="bg-[#FEF7E6] rounded-2xl md:rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform relative w-full aspect-[1.4/1]">
                   <Image
                     src={imagePaths.successfulEvents}
                     alt="50+ Successful Events"
                     fill
-                    className="object-cover rounded-3xl"
+                    className="object-cover"
                   />
                 </div>
               </BlurFade>
             </div>
 
-            {/* 9. Digital Trendsetters - 429px × 270px */}
+            {/* 9. Digital Trendsetters */}
             <BlurFade delay={0.75} inView>
-              <div className="bg-[#E6F6EB] rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform relative group w-full" style={{ aspectRatio: "429/270" }}>
+              <div className="bg-[#E6F6EB] rounded-2xl md:rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform relative group w-full aspect-[1.75/1]">
                 <Image
                   src={imagePaths.digitalTrendsetters}
                   alt="Digital Trendsetters"
                   fill
-                  className="object-cover rounded-3xl"
+                  className="object-cover"
                 />
               </div>
             </BlurFade>
 
             {/* Bottom Right Grid: 13, 14 */}
-            <div className="grid grid-cols-2 gap-4 w-full">
-              {/* 13. GDG Noida logo image - 197px × 215px */}
+            <div className="grid grid-cols-2 gap-3 md:gap-4 w-full">
+              {/* 13. GDG Noida logo image */}
               <BlurFade delay={0.8} inView>
-                <div className="bg-white rounded-3xl overflow-hidden shadow-sm relative hover:scale-[1.02] transition-transform group w-full" style={{ aspectRatio: "197/215" }}>
+                <div className="bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-sm relative hover:scale-[1.02] transition-transform w-full aspect-[1/1.05]">
                   <Image
                     src={imagePaths.gdgNoidaLogo}
                     alt="GDG NOIDA Logo"
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500 rounded-3xl"
+                    className="object-cover"
                   />
                 </div>
               </BlurFade>
 
-              {/* 14. Behind the scenes - 219.79px × 214.54px */}
+              {/* 14. Behind the scenes */}
               <BlurFade delay={0.85} inView>
-                <div className="bg-[#FEF7E6] rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform relative w-full" style={{ aspectRatio: "219.79/214.54" }}>
+                <div className="bg-[#FEF7E6] rounded-2xl md:rounded-3xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform relative w-full aspect-[1/1.05]">
                   <Image
                     src={imagePaths.behindScenes}
                     alt="Behind the Scenes"
                     fill
-                    className="object-cover rounded-3xl"
+                    className="object-cover"
                   />
                 </div>
               </BlurFade>
