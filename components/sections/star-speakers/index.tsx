@@ -25,7 +25,7 @@ const speakers = [
   },
   {
     id: 3,
-    name: "Rohit Mishra",
+    name: "Rohan Mishra",
     position: "Co-Founder, Mastry",
     image: "/assets/speakers/speaker3.webp",
     backgroundColor: "#FAD2CF",
